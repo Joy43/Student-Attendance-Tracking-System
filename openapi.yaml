@@ -106,3 +106,54 @@ paths:
       responses:
         '200':
           description: OK. Returns HTML table of student names, rolls, and status.
+
+  /attapp/dashboard/manage_students.php:
+    get:
+      summary: Load Student Directory or Edit/Delete Actions
+      description: Lists all students or handles inline record loaded for editing, or deleting a student record.
+      parameters:
+        - name: edit
+          in: query
+          description: ID of student to edit.
+          required: false
+          schema:
+            type: integer
+        - name: delete
+          in: query
+          description: ID of student to delete.
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK. Returns the student CRUD layout page.
+    post:
+      summary: Create or Update Student Record
+      description: Adds a new student to the catalog or updates an existing student's name/roll number.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - roll_no
+                - name
+                - save_student
+              properties:
+                student_id:
+                  type: integer
+                  description: Optional. The ID of the student to update (omit for new student).
+                roll_no:
+                  type: string
+                  description: Roll number of the student.
+                name:
+                  type: string
+                  description: Full name of the student.
+                save_student:
+                  type: string
+                  description: Trigger submit identifier.
+      responses:
+        '200':
+          description: OK. Returns the page displaying status messages.
+

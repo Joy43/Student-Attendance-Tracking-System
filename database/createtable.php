@@ -76,6 +76,17 @@ CREATE TABLE IF NOT EXISTS attendance_details (
     PRIMARY KEY (faculty_id, course_id, session_id, student_id, on_date)
 )", "attendance_details");
 
+createTable($conn, "
+CREATE TABLE IF NOT EXISTS notifications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    faculty_user VARCHAR(50) NOT NULL,
+    type ENUM('create','update','delete') NOT NULL,
+    title VARCHAR(120) NOT NULL,
+    message TEXT NOT NULL,
+    is_read TINYINT(1) DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+)", "notifications");
+
 // ===========================================================
 // 2️⃣ INSERT DEFAULT DATA
 // ===========================================================
