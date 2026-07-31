@@ -1,0 +1,53 @@
+services:
+  web:
+    image: attapp-web:latest
+    container_name: attapp_web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html/attapp
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=attapp_password
+      - DB_NAME=attapp_db
+      - DB_PORT=3306
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: attapp_db
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=attapp_password
+      - MYSQL_DATABASE=attapp_db
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: attapp_phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+      - PMA_USER=root
+      - PMA_PASSWORD=attapp_password
+    depends_on:
+      - db
+
+  swagger:
+    image: swaggerapi/swagger-ui
+    container_name: attapp_swagger
+    ports:
+      - "8082:8080"
+    environment:
+      - SWAGGER_JSON=/openapi.yaml
+    volumes:
+      - ./openapi.yaml:/openapi.yaml
+
+volumes:
+  db_data:

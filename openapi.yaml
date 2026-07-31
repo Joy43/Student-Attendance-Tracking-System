@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: Attendance Tracking System (attapp)
+  description: API documentation for the monolithic PHP Faculty Attendance Web Portal. The application endpoints consume form data encoded as `application/x-www-form-urlencoded`.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local Docker Development Web Server
+paths:
+  /attapp/login/index.php:
+    post:
+      summary: Faculty Login Authentication
+      description: Validates faculty credentials against database tables and initiates user session.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+                - login
+              properties:
+                username:
+                  type: string
+                  description: Unique username of the faculty member (e.g. anika, najma).
+                password:
+                  type: string
+                  description: Plain text password (e.g. 123).
+                login:
+                  type: string
+                  description: Form submit trigger. Must be set to 'Login'.
+                  default: Login
+      responses:
+        '200':
+          description: OK. Returns login form page with error notice on credential failure.
+        '302':
+          description: Found. Redirects to `/attapp/dashboard/dashboard.php` on success.
+
+  /attapp/dashboard/take_attendance.php:
+    post:
+      summary: Record Attendance
+      description: Logs presence/absence of all students for a selected course, session, and date.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - course_id
+                - session_id
+                - on_date
+                - attendance
+              properties:
+                course_id:
+                  type: integer
+                  description: ID of the active course.
+                session_id:
+                  type: integer
+                  description: ID of the academic session/term.
+                on_date:
+                  type: string
+                  format: date
+                  description: The target date for logging attendance (YYYY-MM-DD).
+                attendance:
+                  type: object
+                  description: Dynamic key-value pairs mapping student ID to status ('Present' or 'Absent').
+                  additionalProperties:
+                    type: string
+                    enum: [Present, Absent]
+                  example:
+                    "1": "Present"
+                    "2": "Absent"
+                    "3": "Present"
+      responses:
+        '200':
+          description: OK. Returns page with execution response message (Success / Error).
+
+  /attapp/dashboard/view_attendance.php:
+    post:
+      summary: View Attendance Records
+      description: Returns saved attendance logs filtered by course, session, and date.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - course_id
+                - session_id
+                - on_date
+              properties:
+                course_id:
+                  type: integer
+                  description: ID of the selected course.
+                session_id:
+                  type: integer
+                  description: ID of the selected session.
+                on_date:
+                  type: string
+                  format: date
+                  description: Date of the attendance logs (YYYY-MM-DD).
+      responses:
+        '200':
+          description: OK. Returns HTML table of student names, rolls, and status.
