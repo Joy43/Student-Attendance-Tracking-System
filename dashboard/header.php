@@ -84,9 +84,10 @@ function icon($name) {
 
   <div class="sidebar-section-label">System</div>
   <nav class="sidebar-nav">
-    <a href="#" class="nav-item">
-      <span class="nav-icon"><?= icon('bell') ?></span> Notifications
-      <span class="nav-badge">3</span>
+    <a href="/attapp/dashboard/notifications_page.php" class="nav-item <?= activeNav('notifications_page.php', $current_page) ?>" id="sidebar-notif-btn">
+      <span class="nav-icon"><?= icon('bell') ?></span>
+      <span>Notifications</span>
+      <span class="nav-badge" id="sidebar-notif-badge" style="display:none">0</span>
     </a>
     <a href="#" class="nav-item">
       <span class="nav-icon"><?= icon('settings') ?></span> Settings

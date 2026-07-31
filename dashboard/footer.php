@@ -111,7 +111,7 @@ function renderNotifications(data) {
   const notifs = data.notifications || [];
   const unread = data.unread || 0;
 
-  // Update badge
+  // Update topnav badge
   if (unread > 0) {
     badge.textContent = unread > 99 ? '99+' : unread;
     badge.style.display = 'inline-flex';
@@ -119,6 +119,17 @@ function renderNotifications(data) {
   } else {
     badge.style.display = 'none';
     dot.style.display = 'none';
+  }
+
+  // Sync sidebar badge
+  const sideBadge = document.getElementById('sidebar-notif-badge');
+  if (sideBadge) {
+    if (unread > 0) {
+      sideBadge.textContent = unread > 99 ? '99+' : unread;
+      sideBadge.style.display = 'inline-flex';
+    } else {
+      sideBadge.style.display = 'none';
+    }
   }
 
   if (notifs.length === 0) {
