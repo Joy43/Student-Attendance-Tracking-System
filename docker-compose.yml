@@ -6,12 +6,8 @@ services:
       - "8080:80"
     volumes:
       - .:/var/www/html/attapp
-    environment:
-      - DB_HOST=db
-      - DB_USER=root
-      - DB_PASSWORD=attapp_password
-      - DB_NAME=attapp_db
-      - DB_PORT=3306
+    env_file:
+      - .env
     depends_on:
       - db
 
@@ -21,8 +17,8 @@ services:
     ports:
       - "3307:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=attapp_password
-      - MYSQL_DATABASE=attapp_db
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-attapp_password}
+      - MYSQL_DATABASE=${DB_NAME:-attapp_db}
     volumes:
       - db_data:/var/lib/mysql
 
@@ -34,8 +30,8 @@ services:
     environment:
       - PMA_HOST=db
       - PMA_PORT=3306
-      - PMA_USER=root
-      - PMA_PASSWORD=attapp_password
+      - PMA_USER=${DB_USER:-root}
+      - PMA_PASSWORD=${DB_PASSWORD:-attapp_password}
     depends_on:
       - db
 
