@@ -6,7 +6,7 @@ require_once $path . "/attapp/database/database.php";
 // Turn off strict exception reporting for graceful duplicate handling
 mysqli_report(MYSQLI_REPORT_OFF);
 
-// ✅ Helper: Create table safely
+//  Helper: Create table safely
 function createTable($conn, $sql, $name)
 {
     if (mysqli_query($conn, $sql)) {
@@ -88,12 +88,12 @@ CREATE TABLE IF NOT EXISTS notifications (
 )", "notifications");
 
 // ===========================================================
-// 2️⃣ INSERT DEFAULT DATA
+// 2️ INSERT DEFAULT DATA
 // ===========================================================
 
 insertData($conn, "
 INSERT INTO student_details (id, roll_no, name) VALUES
-(1,'CSB21001','nafeem'),
+(1,'CSB189','nafeem'),
 (2,'CSB21002','sobuj'),
 (3,'CSB21003','Shehab'),
 (4,'CSB21004','mostafa'),
@@ -112,7 +112,8 @@ INSERT INTO faculty_details (id, user_name, password, name) VALUES
 (3,'najma','123','Najma Akter'),
 (4,'saima','123','Saima Akter'),
 (5,'shanchayan','123','sanchayan battacharjje'),
-(6,'manooj','123','Manooj Hazarika')
+(6,'manooj','123','Manooj Hazarika'),
+(7,'joy','123','ss joy')
 ", "faculty_details");
 
 insertData($conn, "
@@ -132,7 +133,7 @@ INSERT INTO course_details (id, title, code, credit) VALUES
 ", "course_details");
 
 // ===========================================================
-// ✅ FINISH
+//  FINISH
 // ===========================================================
 echo "<br><br>🎉 All tables created and data inserted successfully.";
 

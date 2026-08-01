@@ -120,7 +120,7 @@ foreach ($records as $r) { if (isset($counts[$r['status']])) $counts[$r['status'
           </select>
         </div>
         <div class="form-group" style="justify-content:flex-end;align-self:flex-end">
-          <button type="submit" class="btn btn-primary" style="width:100%">Apply Filters</button>
+          <button type="submit" class="btn btn-grad btn-full">Apply Filters</button>
         </div>
       </div>
     </form>
@@ -135,7 +135,7 @@ foreach ($records as $r) { if (isset($counts[$r['status']])) $counts[$r['status'
       <input type="text" id="report-search" placeholder="Search name, roll, course…" oninput="filterReport(this.value)">
     </div>
     <button class="btn btn-secondary btn-sm" onclick="exportCSV()">
-      <?= icon('download') ?> Export CSV
+      Export CSV
     </button>
     <span style="font-size:.8rem;color:var(--text-secondary);margin-left:auto"><?= $count ?> records</span>
   </div>

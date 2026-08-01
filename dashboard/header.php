@@ -89,7 +89,7 @@ function icon($name) {
       <span>Notifications</span>
       <span class="nav-badge" id="sidebar-notif-badge" style="display:none">0</span>
     </a>
-    <a href="#" class="nav-item">
+    <a href="/attapp/dashboard/settings.php" class="nav-item <?= activeNav('settings.php', $current_page) ?>">
       <span class="nav-icon"><?= icon('settings') ?></span> Settings
     </a>
   </nav>
@@ -125,13 +125,6 @@ function icon($name) {
     </div>
 
     <div class="topnav-right">
-      <!-- Academic Year -->
-      <select class="year-select" id="year-select">
-        <option>2025–2026</option>
-        <option>2024–2025</option>
-        <option>2023–2024</option>
-      </select>
-
       <!-- Notifications -->
       <div style="position:relative" id="notif-wrap">
         <button class="icon-btn" id="notif-btn" title="Notifications" onclick="toggleNotifPanel()">
@@ -170,10 +163,7 @@ function icon($name) {
         </div>
       </div>
 
-      <!-- Messages -->
-      <button class="icon-btn" title="Messages">
-        <span style="width:18px;height:18px"><?= icon('mail') ?></span>
-      </button>
+   
 
       <!-- Theme Toggle -->
       <button class="icon-btn" id="theme-btn" title="Toggle theme" onclick="toggleTheme()">

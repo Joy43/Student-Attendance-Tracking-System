@@ -153,13 +153,13 @@ if ($recent_q) while ($r = mysqli_fetch_assoc($recent_q)) $recent[] = $r;
     <div class="card-header"><span class="card-title">⚡ Quick Actions</span></div>
     <div class="card-body" style="display:flex;flex-direction:column;gap:10px;">
       <a href="/attapp/dashboard/take_attendance.php" class="btn btn-primary" style="width:100%;justify-content:flex-start;gap:10px;text-decoration:none;">
-        📋 Take Today's Attendance
+        Take Today's Attendance
       </a>
       <a href="/attapp/dashboard/manage_students.php" class="btn btn-secondary" style="width:100%;justify-content:flex-start;gap:10px;text-decoration:none;">
-        👤 Manage Student Catalog
+        Manage Student Catalog
       </a>
       <a href="/attapp/dashboard/view_attendance.php" class="btn btn-secondary" style="width:100%;justify-content:flex-start;gap:10px;text-decoration:none;">
-        📊 Generate Reports
+        Generate Reports
       </a>
     </div>
   </div>

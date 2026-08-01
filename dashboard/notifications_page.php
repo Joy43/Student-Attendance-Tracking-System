@@ -82,10 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
   <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
     <?php if ($count_unread > 0): ?>
-    <a href="?mark_all=1" class="btn btn-secondary btn-sm" onclick="return confirm('Mark all as read?')">✅ Mark All Read</a>
+    <a href="?mark_all=1" class="btn btn-secondary btn-sm" onclick="return confirm('Mark all as read?')">Mark All Read</a>
     <?php endif; ?>
     <?php if ($count_all > 0): ?>
-    <a href="?delete_all=1" class="btn btn-danger btn-sm" onclick="return confirm('Delete ALL notifications? This cannot be undone.')">🗑️ Clear All</a>
+    <a href="?delete_all=1" class="btn btn-danger btn-sm" onclick="return confirm('Delete ALL notifications? This cannot be undone.')">Clear All</a>
     <?php endif; ?>
   </div>
 </div>
@@ -195,13 +195,13 @@ document.addEventListener('DOMContentLoaded', () => {
       <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0;align-items:flex-end">
         <?php if ($n['is_read'] == 0): ?>
         <a href="?mark_id=<?= $n['id'] ?>&filter=<?= $filter ?>" class="btn btn-secondary btn-sm" title="Mark as read" style="white-space:nowrap">
-          ✅ Mark Read
+          Mark Read
         </a>
         <?php else: ?>
         <span style="font-size:.72rem;font-weight:600;color:var(--present);padding:4px 8px;background:var(--present-bg);border-radius:6px;white-space:nowrap">✓ Read</span>
         <?php endif; ?>
         <a href="?delete_id=<?= $n['id'] ?>" class="btn btn-sm" style="background:var(--absent-bg);color:var(--absent);border:1px solid rgba(220,38,38,.2);white-space:nowrap" onclick="return confirm('Delete this notification?')">
-          🗑️ Delete
+          Delete
         </a>
       </div>
     </div>
@@ -214,10 +214,10 @@ document.addEventListener('DOMContentLoaded', () => {
     <span style="font-size:.8rem;color:var(--text-secondary)">Showing <?= count($notifs) ?> notification<?= count($notifs) !== 1 ? 's' : '' ?></span>
     <div style="display:flex;gap:8px">
       <?php if ($count_unread > 0): ?>
-      <a href="?mark_all=1" class="btn btn-secondary btn-sm" onclick="return confirm('Mark all as read?')">✅ Mark All Read</a>
+      <a href="?mark_all=1" class="btn btn-secondary btn-sm" onclick="return confirm('Mark all as read?')">Mark All Read</a>
       <?php endif; ?>
       <?php if ($count_all > 0): ?>
-      <a href="?delete_all=1" class="btn btn-danger btn-sm" onclick="return confirm('Clear all notifications?')">🗑️ Clear All</a>
+      <a href="?delete_all=1" class="btn btn-danger btn-sm" onclick="return confirm('Clear all notifications?')">Clear All</a>
       <?php endif; ?>
     </div>
   </div>

@@ -476,9 +476,12 @@ tbody tr:hover td { background: var(--surface-2); }
 .student-name { font-weight: 600; font-size: .875rem; }
 .student-roll { font-size: .75rem; color: var(--text-secondary); }
 
+
 /* ============================================================
-   BUTTONS
+   BUTTONS — Reusable System
    ============================================================ */
+
+/* ── Base ─────────────────────────────────────────────────── */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 7px;
   padding: 8px 16px; border-radius: var(--r-md);
@@ -486,17 +489,95 @@ tbody tr:hover td { background: var(--surface-2); }
   border: 1px solid transparent; transition: all var(--transition);
   white-space: nowrap; line-height: 1.4;
 }
+
+/* ── Solid Variants ───────────────────────────────────────── */
 .btn-primary  { background: var(--primary);  color: white; box-shadow: 0 1px 2px rgba(37,99,235,.25); }
-.btn-primary:hover  { background: var(--primary-hover); box-shadow: 0 4px 8px rgba(37,99,235,.3); }
-.btn-secondary { background: var(--surface); color: var(--text); border-color: var(--border); }
-.btn-secondary:hover { background: var(--surface-2); border-color: var(--border-hover); }
+.btn-primary:hover  { background: var(--primary-hover); box-shadow: 0 4px 8px rgba(37,99,235,.3); transform: translateY(-1px); }
+.btn-secondary { 
+  background: var(--surface); color: var(--text); 
+  border: 1px solid var(--border); 
+  box-shadow: 0 1px 2px rgba(0,0,0,.05), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.btn-secondary:hover { background: var(--surface-2); border-color: var(--border-hover); transform: translateY(-1px); box-shadow: 0 3px 6px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.05); }
 .btn-ghost   { background: transparent; color: var(--text-secondary); }
 .btn-ghost:hover { background: var(--surface-2); color: var(--text); }
 .btn-danger  { background: var(--absent); color: white; }
-.btn-danger:hover { background: #B91C1C; }
+.btn-danger:hover { background: #B91C1C; transform: translateY(-1px); }
 .btn-success { background: var(--present); color: white; }
-.btn-success:hover { background: #15803D; }
-.btn-sm { padding: 5px 10px; font-size: .8rem; border-radius: var(--r-sm); }
+.btn-success:hover { background: #15803D; transform: translateY(-1px); }
+
+/* ── Gradient Primary (blue) — compact, glowing ──────────── */
+/*    Use: <button class="btn btn-grad">...</button>           */
+.btn-grad {
+  position: relative; overflow: hidden;
+  padding: 9px 16px;
+  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+  color: #fff; border: none; border-radius: 8px;
+  font-size: .82rem; font-weight: 700; letter-spacing: .02em;
+  box-shadow: 
+    inset 0 1px 1px rgba(255,255,255,.3), 
+    inset 0 -1px 1px rgba(0,0,0,.15),
+    0 2px 8px rgba(37,99,235,.40);
+  text-shadow: 0 1px 2px rgba(0,0,0,.2);
+  transition: all .2s cubic-bezier(.4,0,.2,1);
+  white-space: nowrap;
+}
+.btn-grad::before {
+  content: ''; position: absolute; inset: -2px; border-radius: 10px;
+  background: linear-gradient(135deg, #3b82f6, #7c3aed);
+  opacity: 0; filter: blur(6px); z-index: -1;
+  transition: opacity .3s ease;
+}
+.btn-grad:hover  { transform: translateY(-1px); box-shadow: inset 0 1px 1px rgba(255,255,255,.3), inset 0 -1px 1px rgba(0,0,0,.15), 0 6px 16px rgba(37,99,235,.50); }
+.btn-grad:hover::before { opacity: .4; }
+.btn-grad:active { transform: scale(.96); box-shadow: inset 0 2px 4px rgba(0,0,0,.2), 0 2px 4px rgba(37,99,235,.30); }
+
+/* ── Gradient Purple (edit/update) ───────────────────────── */
+/*    Use: <button class="btn btn-grad btn-grad-purple">       */
+.btn-grad-purple {
+  background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.3), inset 0 -1px 1px rgba(0,0,0,.15), 0 2px 8px rgba(124,58,237,.40);
+}
+.btn-grad-purple::before { background: linear-gradient(135deg, #8b5cf6, #2563eb); }
+.btn-grad-purple:hover { box-shadow: inset 0 1px 1px rgba(255,255,255,.3), inset 0 -1px 1px rgba(0,0,0,.15), 0 6px 16px rgba(124,58,237,.50); }
+.btn-grad-purple:active { box-shadow: inset 0 2px 4px rgba(0,0,0,.2), 0 2px 4px rgba(124,58,237,.30); }
+
+/* ── Gradient Green (confirm/save) ───────────────────────── */
+/*    Use: <button class="btn btn-grad btn-grad-green">        */
+.btn-grad-green {
+  background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.3), inset 0 -1px 1px rgba(0,0,0,.15), 0 2px 8px rgba(22,163,74,.40);
+}
+.btn-grad-green::before { background: linear-gradient(135deg, #22c55e, #0284c7); }
+.btn-grad-green:hover { box-shadow: inset 0 1px 1px rgba(255,255,255,.3), inset 0 -1px 1px rgba(0,0,0,.15), 0 6px 16px rgba(22,163,74,.50); }
+.btn-grad-green:active { box-shadow: inset 0 2px 4px rgba(0,0,0,.2), 0 2px 4px rgba(22,163,74,.30); }
+
+/* ── Cancel Ghost ─────────────────────────────────────────── */
+/*    Use: <button class="btn btn-cancel">✕ Cancel</button>    */
+.btn-cancel {
+  padding: 9px 13px;
+  background: transparent; color: var(--text-secondary);
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: .8rem; font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0,0,0,.02);
+  transition: all .2s cubic-bezier(.4,0,.2,1); white-space: nowrap;
+}
+.btn-cancel:hover {
+  border-color: rgba(239,68,68,.3);
+  color: #ef4444;
+  background: rgba(239,68,68,.08);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(239,68,68,.1);
+}
+.btn-cancel:active { transform: scale(.96); box-shadow: inset 0 2px 4px rgba(239,68,68,.1); }
+
+/* ── Size Modifiers ───────────────────────────────────────── */
+.btn-sm  { padding: 5px 10px; font-size: .8rem;  border-radius: var(--r-sm); }
+.btn-xs  { padding: 3px  8px; font-size: .75rem; border-radius: 5px; }
+.btn-lg  { padding: 12px 24px; font-size: 1rem;  border-radius: 10px; }
+.btn-full { width: 100%; }
+
+/* ── Icon-only Buttons ────────────────────────────────────── */
 .btn-icon-sm {
   width: 30px; height: 30px; border-radius: var(--r-sm);
   display: flex; align-items: center; justify-content: center;

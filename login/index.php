@@ -3,7 +3,7 @@ session_start();
 
 // Include database connection
 $path = isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] !== '' ? $_SERVER['DOCUMENT_ROOT'] : dirname(__DIR__, 1);
-require_once $path . "/attapp/database/database.php"; // $conn is defined here
+require_once $path . "/attapp/database/database.php"; 
 
 $error = "";
 

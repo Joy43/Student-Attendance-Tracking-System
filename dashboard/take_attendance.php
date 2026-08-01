@@ -95,8 +95,8 @@ if ($students) while ($r = mysqli_fetch_assoc($students)) $all_students[] = $r;
         <span style="color:var(--text-disabled);width:14px;height:14px;flex-shrink:0"><?= icon('search') ?></span>
         <input type="text" id="student-search" placeholder="Filter students…" oninput="filterStudents(this.value)">
       </div>
-      <button type="button" class="btn btn-success btn-sm" onclick="markAll('Present')">✅ All Present</button>
-      <button type="button" class="btn btn-danger  btn-sm" onclick="markAll('Absent')">❌ All Absent</button>
+      <button type="button" class="btn btn-grad btn-grad-green btn-sm" onclick="markAll('Present')">All Present</button>
+      <button type="button" class="btn btn-grad btn-danger btn-sm" onclick="markAll('Absent')">All Absent</button>
       <span style="font-size:.8rem;color:var(--text-secondary);margin-left:auto"><?= count($all_students) ?> students</span>
     </div>
     <table>
@@ -142,8 +142,8 @@ if ($students) while ($r = mysqli_fetch_assoc($students)) $all_students[] = $r;
     </table>
     <?php if (!empty($all_students)): ?>
     <div style="padding:14px 16px;display:flex;justify-content:flex-end;border-top:1px solid var(--border)">
-      <button type="submit" class="btn btn-primary">
-        <?= icon('check') ?> Save Attendance Records
+      <button type="submit" class="btn btn-grad">
+        Save Attendance Records
       </button>
     </div>
     <?php endif; ?>

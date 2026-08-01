@@ -126,7 +126,7 @@ $avatar_gradients = [
           <input type="text" id="student-filter" placeholder="Search students…" oninput="filterTable(this.value)">
         </div>
         <button class="btn btn-primary btn-sm" onclick="openModal('add-modal')">
-          <?= icon('user-plus') ?> Add Student
+      Search Student
         </button>
         <span style="font-size:.8rem;color:var(--text-secondary);margin-left:auto"><?= $total_students ?> total</span>
       </div>
@@ -189,30 +189,76 @@ $avatar_gradients = [
   </div>
 
   <!-- ── Add/Edit Form ── -->
-  <div class="card" id="form-card">
-    <div class="card-header">
-      <span class="card-title" id="form-title"><?= $edit_student ? '✏️ Edit Student' : '➕ Register Student' ?></span>
+  <!-- ══ FORM CARD ══ -->
+  <div class="card" id="form-card" style="overflow:hidden">
+
+    <!-- Card Header with gradient accent -->
+    <div style="
+      padding:16px 20px; border-bottom:1px solid var(--border);
+      background:linear-gradient(135deg, rgba(37,99,235,.06) 0%, rgba(124,58,237,.04) 100%);
+      display:flex; align-items:center; gap:10px;
+    ">
+   
+      <div>
+        <div id="form-title" style="font-size:.95rem;font-weight:700;color:var(--text)">
+          <?= $edit_student ? '✏️ Edit Student' : 'Register Student' ?>
+        </div>
+        <div id="form-subtitle" style="font-size:.75rem;color:var(--text-secondary);margin-top:1px">
+          <?= $edit_student ? 'Update the student record below' : 'Fill in the details to add a new student' ?>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
+
+    <div class="card-body" style="padding:20px">
       <form method="POST" action="manage_students.php" id="student-form">
         <input type="hidden" name="student_id" id="form-sid" value="<?= $edit_student ? $edit_student['id'] : '' ?>">
-        <div class="form-group" style="margin-bottom:14px">
-          <label class="form-label">Roll Number</label>
-          <input type="text" name="roll_no" id="form-roll" class="form-control" value="<?= $edit_student ? htmlspecialchars($edit_student['roll_no']) : '' ?>" placeholder="e.g. CSB21011" required>
+
+        <!-- Roll Number Input -->
+        <div style="margin-bottom:16px">
+          <label class="form-label" style="display:flex;align-items:center;gap:5px;margin-bottom:7px">
+            <span style="opacity:.7">🪪</span> Roll Number
+          </label>
+          <input type="text" name="roll_no" id="form-roll" class="form-control"
+            value="<?= $edit_student ? htmlspecialchars($edit_student['roll_no']) : '' ?>"
+            placeholder="e.g. CSB21011" required
+            style="transition:border-color .2s,box-shadow .2s"
+            onfocus="this.style.borderColor='#2563eb';this.style.boxShadow='0 0 0 3px rgba(37,99,235,.15)'"
+            onblur="this.style.borderColor='';this.style.boxShadow=''">
         </div>
-        <div class="form-group" style="margin-bottom:20px">
-          <label class="form-label">Full Name</label>
-          <input type="text" name="name" id="form-name" class="form-control" value="<?= $edit_student ? htmlspecialchars($edit_student['name']) : '' ?>" placeholder="e.g. John Doe" required>
+
+        <!-- Full Name Input -->
+        <div style="margin-bottom:24px">
+          <label class="form-label" style="display:flex;align-items:center;gap:5px;margin-bottom:7px">
+            <span style="opacity:.7">👤</span> Full Name
+          </label>
+          <input type="text" name="name" id="form-name" class="form-control"
+            value="<?= $edit_student ? htmlspecialchars($edit_student['name']) : '' ?>"
+            placeholder="e.g. John Doe" required
+            style="transition:border-color .2s,box-shadow .2s"
+            onfocus="this.style.borderColor='#2563eb';this.style.boxShadow='0 0 0 3px rgba(37,99,235,.15)'"
+            onblur="this.style.borderColor='';this.style.boxShadow=''">
         </div>
-        <div style="display:flex;gap:10px">
-          <button type="submit" name="save_student" class="btn btn-primary" style="flex-grow:1">
-            <?= icon('check') ?> <span id="form-btn-label"><?= $edit_student ? 'Update Profile' : 'Register Student' ?></span>
+
+        <!-- Buttons Row -->
+        <div style="display:flex;align-items:center;gap:8px;margin-top:2px">
+
+          <!-- Primary submit -->
+          <button type="submit" name="save_student" id="form-submit-btn"
+            class="btn btn-grad btn-full">
+            <span id="form-btn-label"><?= $edit_student ? 'Update Profile' : 'Register Student' ?></span>
           </button>
-          <button type="button" class="btn btn-secondary" onclick="resetForm()">Cancel</button>
+
+          <!-- Cancel -->
+          <button type="button" onclick="resetForm()" class="btn btn-cancel">
+            Cancel
+          </button>
+
         </div>
+
       </form>
     </div>
   </div>
+
 
 </div>
 
@@ -231,7 +277,7 @@ $avatar_gradients = [
     </div>
     <div class="card-footer" style="display:flex;justify-content:flex-end;gap:8px">
       <button class="btn btn-secondary btn-sm" onclick="closeModal('profile-modal')">Close</button>
-      <button class="btn btn-primary btn-sm" id="modal-edit-btn">✏️ Edit</button>
+      <button class="btn btn-primary btn-sm" id="modal-edit-btn">Edit</button>
     </div>
   </div>
 </div>
@@ -249,17 +295,40 @@ function editStudent(id, roll, name) {
   document.getElementById('form-sid').value = id;
   document.getElementById('form-roll').value = roll;
   document.getElementById('form-name').value = name;
-  document.getElementById('form-title').textContent = '✏️ Edit Student';
+
+  // Header
+  document.getElementById('form-title').textContent    = '✏️ Edit Student';
+  document.getElementById('form-subtitle').textContent = 'Update the student record below';
+  const badge = document.getElementById('form-title-badge');
+  badge.style.background = 'linear-gradient(135deg,#7c3aed,#6d28d9)';
+  badge.style.boxShadow  = '0 2px 8px rgba(124,58,237,.4)';
+  badge.textContent      = '✏️';
+
+  // Button → purple (edit mode)
+  const btn = document.getElementById('form-submit-btn');
+  btn.classList.add('btn-grad-purple');
   document.getElementById('form-btn-label').textContent = 'Update Profile';
+
   document.getElementById('form-card').scrollIntoView({behavior:'smooth'});
   document.getElementById('form-roll').focus();
 }
 
 function resetForm() {
-  document.getElementById('form-sid').value = '';
+  document.getElementById('form-sid').value  = '';
   document.getElementById('form-roll').value = '';
   document.getElementById('form-name').value = '';
-  document.getElementById('form-title').textContent = '➕ Register Student';
+
+  // Header
+  document.getElementById('form-title').textContent    = 'Register Student';
+  document.getElementById('form-subtitle').textContent = 'Fill in the details to add a new student';
+  const badge = document.getElementById('form-title-badge');
+  badge.style.background = 'linear-gradient(135deg,#2563eb,#1d4ed8)';
+  badge.style.boxShadow  = '0 2px 8px rgba(37,99,235,.35)';
+
+
+  // Button → blue (register mode)
+  const btn = document.getElementById('form-submit-btn');
+  btn.classList.remove('btn-grad-purple');
   document.getElementById('form-btn-label').textContent = 'Register Student';
 }
 
