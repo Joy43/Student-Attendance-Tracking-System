@@ -28,3 +28,4 @@ Faculty Attendance App Portal: 👉 http://localhost:8080/attapp/login/index.php
 --------------------------------------------------
 👉 API Docs (Swagger UI): http://localhost:8082
 --------------------------------------------------
+https://student-attendance-tracking-system-73cl.onrender.com/setup.php

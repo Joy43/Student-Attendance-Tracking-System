@@ -92,17 +92,11 @@ CREATE TABLE IF NOT EXISTS notifications (
 
 insertData($conn, "
 INSERT INTO student_details (id, roll_no, name) VALUES
-(1,'CSB189','nafeem'),
-(2,'CSB21002','sobuj'),
-(3,'CSB21003','Shehab'),
-(4,'CSB21004','mostafa'),
-(5,'CSB21005','nidhi'),
-(6,'CSB21006','ridhi'),
-(7,'CSB21007','khandakar'),
-(8,'CSB21008','shifat'),
-(9,'CSB21009','ibad'),
-(10,'CSB21010','James Jones')
+(1,'CSE-192','ss joy'),
+(2,'CSE-192','sani')
+
 ", "student_details");
+
 
 insertData($conn, "
 INSERT INTO faculty_details (id, user_name, password, name) VALUES
