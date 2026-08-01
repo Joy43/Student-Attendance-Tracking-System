@@ -18,7 +18,7 @@ find . -name "._*" -delete || true
 
 # 2. Build and start containers
 echo -e "🐳 Building PHP web image and launching containers..."
-docker build -t attapp-web:latest - < Dockerfile
+docker build -t attapp-web:latest .
 docker-compose up -d
 
 # 3. Wait for MySQL container to become ready
