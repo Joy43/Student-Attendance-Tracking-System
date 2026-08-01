@@ -10,9 +10,11 @@
 <script>
 /* ─── Theme Toggle ─── */
 (function initTheme() {
-  if (localStorage.getItem('theme') === 'dark') {
+  // Default to dark mode unless explicitly set to light
+  if (localStorage.getItem('theme') !== 'light') {
     document.body.classList.add('dark-mode');
     document.getElementById('theme-icon').innerHTML = `<?= icon('sun') ?>`;
+    localStorage.setItem('theme', 'dark'); // Set it so it's consistent
   }
 })();
 
