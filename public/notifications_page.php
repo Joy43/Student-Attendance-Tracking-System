@@ -1,5 +1,5 @@
 <?php
-require_once "header.php";
+require_once "../src/header.php";
 
 $faculty = mysqli_real_escape_string($conn, $faculty_user);
 
@@ -17,12 +17,12 @@ if (isset($_GET['delete_all'])) {
 if (isset($_GET['delete_id'])) {
     $del_id = (int)$_GET['delete_id'];
     mysqli_query($conn, "DELETE FROM notifications WHERE id='$del_id' AND faculty_user='$faculty'");
-    header("Location: /attapp/dashboard/notifications_page.php"); exit();
+    header("Location: /notifications_page.php"); exit();
 }
 if (isset($_GET['mark_id'])) {
     $mid = (int)$_GET['mark_id'];
     mysqli_query($conn, "UPDATE notifications SET is_read=1 WHERE id='$mid' AND faculty_user='$faculty'");
-    header("Location: /attapp/dashboard/notifications_page.php"); exit();
+    header("Location: /notifications_page.php"); exit();
 }
 
 // ─── Filter ───
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="page-header" style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px">
   <div>
     <div class="page-breadcrumb">
-      <a href="/attapp/dashboard/dashboard.php" style="color:var(--text-secondary)">Home</a>
+      <a href="/dashboard.php" style="color:var(--text-secondary)">Home</a>
       <span>›</span><span style="color:var(--text)">Notifications</span>
     </div>
     <h1 class="page-title">🔔 Notifications</h1>
@@ -241,7 +241,7 @@ document.querySelectorAll('.notif-row').forEach(row => {
     const match = href.match(/mark_id=(\d+)/);
     if (match) {
       setTimeout(() => {
-        fetch('/attapp/dashboard/notifications.php?action=mark_read&id=' + match[1]);
+        fetch('/notifications.php?action=mark_read&id=' + match[1]);
         row.style.background = '';
         const dot = row.querySelector('[title="Unread"]');
         if (dot) dot.remove();
@@ -251,4 +251,4 @@ document.querySelectorAll('.notif-row').forEach(row => {
 });
 </script>
 
-<?php require_once "footer.php"; ?>
+<?php require_once "../src/footer.php"; ?>

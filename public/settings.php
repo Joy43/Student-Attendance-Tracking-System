@@ -2,12 +2,11 @@
 // ============================================================
 // System Settings CRUD Page
 // ============================================================
-$path = isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] !== '' ? $_SERVER['DOCUMENT_ROOT'] : dirname(__DIR__, 1);
-require_once $path . "/attapp/database/database.php";
+require_once dirname(__DIR__) . "/src/database.php";
 
 session_start();
 if (!isset($_SESSION['faculty'])) {
-    header("Location: /attapp/login/index.php");
+    header("Location: /login.php");
     exit();
 }
 
@@ -137,7 +136,7 @@ $session_res = mysqli_query($conn, "SELECT * FROM session_details ORDER BY year 
 $course_res  = mysqli_query($conn, "SELECT * FROM course_details ORDER BY code ASC");
 
 // Include UI Header
-require_once "header.php";
+require_once "../src/header.php";
 ?>
 
 <div class="page-header">
@@ -460,4 +459,4 @@ function editCourse(id, code, title, credit) {
 }
 </script>
 
-<?php require_once "footer.php"; ?>
+<?php require_once "../src/footer.php"; ?>

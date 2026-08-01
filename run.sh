@@ -31,11 +31,11 @@ echo -e "\n✅ Database container is fully online."
 
 # 4. Initialize Database schema & mock data
 echo -e "🗄️  Running database schema setup and seed scripts..."
-docker-compose exec -T web php /var/www/html/attapp/database/createtable.php > /dev/null
+docker-compose exec -T web php /var/www/html/public/setup.php > /dev/null
 
 echo -e "\n${GREEN}🎉 System is fully online and ready!${NC}"
 echo -e "${BLUE}--------------------------------------------------${NC}"
-echo -e "${YELLOW}👉 Faculty Portal (Web App):${NC} ${GREEN}http://localhost:8080/attapp/login/index.php${NC}"
+echo -e "${YELLOW}👉 Faculty Portal (Web App):${NC} ${GREEN}http://localhost:8080/login.php${NC}"
 echo -e "   Faculty Credentials: Username: ${CYAN}anika${NC} | Password: ${CYAN}123${NC}"
 echo -e "${BLUE}--------------------------------------------------${NC}"
 echo -e "${YELLOW}👉 Database Admin Panel (phpMyAdmin):${NC} ${GREEN}http://localhost:8081${NC}"

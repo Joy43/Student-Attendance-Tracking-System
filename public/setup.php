@@ -1,7 +1,6 @@
 <?php
 // Include the database connection
-$path = isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] !== '' ? $_SERVER['DOCUMENT_ROOT'] : dirname(__DIR__, 2);
-require_once $path . "/attapp/database/database.php";
+require_once dirname(__DIR__) . "/src/database.php";
 
 // Turn off strict exception reporting for graceful duplicate handling
 mysqli_report(MYSQLI_REPORT_OFF);

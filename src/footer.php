@@ -68,7 +68,7 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
 /* ══════════════════════════════════════════
    NOTIFICATION SYSTEM
    ══════════════════════════════════════════ */
-const NOTIF_API = '/attapp/dashboard/notifications.php';
+const NOTIF_API = '/notifications.php';
 let notifOpen = false;
 
 const typeConfig = {

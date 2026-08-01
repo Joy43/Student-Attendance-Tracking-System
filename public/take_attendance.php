@@ -1,5 +1,5 @@
 <?php
-require_once "header.php";
+require_once "../src/header.php";
 
 $courses  = mysqli_query($conn, "SELECT id, title, code FROM course_details ORDER BY title");
 $sessions = mysqli_query($conn, "SELECT id, year, term FROM session_details ORDER BY year DESC");
@@ -178,4 +178,4 @@ function filterStudents(query) {
 }
 </script>
 
-<?php require_once "footer.php"; ?>
+<?php require_once "../src/footer.php"; ?>

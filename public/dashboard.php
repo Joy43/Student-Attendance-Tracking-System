@@ -1,5 +1,5 @@
 <?php
-require_once "header.php";
+require_once "../src/header.php";
 
 // ─── Fetch live statistics ───
 function q($conn, $sql) {
@@ -121,7 +121,7 @@ if ($recent_q) while ($r = mysqli_fetch_assoc($recent_q)) $recent[] = $r;
   <div class="card" style="grid-column:span 2;">
     <div class="card-header">
       <span class="card-title">🔔 Recent Attendance Activity</span>
-      <a href="/attapp/dashboard/view_attendance.php" class="btn btn-ghost btn-sm" style="font-size:.8rem;color:var(--primary)">View All →</a>
+      <a href="/view_attendance.php" class="btn btn-ghost btn-sm" style="font-size:.8rem;color:var(--primary)">View All →</a>
     </div>
     <div class="card-body" style="padding-top:0;padding-bottom:0;">
       <?php if (empty($recent)): ?>
@@ -152,13 +152,13 @@ if ($recent_q) while ($r = mysqli_fetch_assoc($recent_q)) $recent[] = $r;
   <div class="card">
     <div class="card-header"><span class="card-title">⚡ Quick Actions</span></div>
     <div class="card-body" style="display:flex;flex-direction:column;gap:10px;">
-      <a href="/attapp/dashboard/take_attendance.php" class="btn btn-primary" style="width:100%;justify-content:flex-start;gap:10px;text-decoration:none;">
+      <a href="/take_attendance.php" class="btn btn-primary" style="width:100%;justify-content:flex-start;gap:10px;text-decoration:none;">
         Take Today's Attendance
       </a>
-      <a href="/attapp/dashboard/manage_students.php" class="btn btn-secondary" style="width:100%;justify-content:flex-start;gap:10px;text-decoration:none;">
+      <a href="/manage_students.php" class="btn btn-secondary" style="width:100%;justify-content:flex-start;gap:10px;text-decoration:none;">
         Manage Student Catalog
       </a>
-      <a href="/attapp/dashboard/view_attendance.php" class="btn btn-secondary" style="width:100%;justify-content:flex-start;gap:10px;text-decoration:none;">
+      <a href="/view_attendance.php" class="btn btn-secondary" style="width:100%;justify-content:flex-start;gap:10px;text-decoration:none;">
         Generate Reports
       </a>
     </div>
@@ -208,4 +208,4 @@ new Chart(document.getElementById('pieChart'), {
 });
 </script>
 
-<?php require_once "footer.php"; ?>
+<?php require_once "../src/footer.php"; ?>

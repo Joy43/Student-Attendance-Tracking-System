@@ -9,11 +9,11 @@ if (isset($_SESSION['faculty'])) {
     session_destroy();
 
     // Redirect to login page after logout
-    header("Location: /attapp/login/index.php");
+    header("Location: /login.php");
     exit();
 } else {
     // If no faculty session found, redirect directly to login
-    header("Location: /attapp/login/index.php");
+    header("Location: /login.php");
     exit();
 }
 ?>

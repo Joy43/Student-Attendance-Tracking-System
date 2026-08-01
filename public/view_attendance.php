@@ -1,5 +1,5 @@
 <?php
-require_once "header.php";
+require_once "../src/header.php";
 
 // ─── Filters ───
 $filter_course  = isset($_GET['course_id'])  ? (int)$_GET['course_id']  : 0;
@@ -225,4 +225,4 @@ function exportCSV() {
 }
 </script>
 
-<?php require_once "footer.php"; ?>
+<?php require_once "../src/footer.php"; ?>

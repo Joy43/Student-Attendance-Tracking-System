@@ -14,10 +14,7 @@ if (!isset($_SESSION['faculty'])) {
     exit();
 }
 
-$path = isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] !== ''
-    ? $_SERVER['DOCUMENT_ROOT']
-    : dirname(__DIR__, 1);
-require_once $path . "/attapp/database/database.php";
+require_once dirname(__DIR__) . "/src/database.php";
 
 $faculty_user = mysqli_real_escape_string($conn, $_SESSION['faculty']);
 $action       = $_GET['action'] ?? $_POST['action'] ?? 'fetch';

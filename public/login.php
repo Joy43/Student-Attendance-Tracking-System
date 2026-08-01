@@ -2,8 +2,7 @@
 session_start();
 
 // Include database connection
-$path = isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] !== '' ? $_SERVER['DOCUMENT_ROOT'] : dirname(__DIR__, 1);
-require_once $path . "/attapp/database/database.php"; 
+require_once dirname(__DIR__) . "/src/database.php"; 
 
 $error = "";
 
@@ -19,7 +18,7 @@ if (isset($_POST['login'])) {
     if ($result && mysqli_num_rows($result) == 1) {
         // Login successful
         $_SESSION['faculty'] = $username;
-        header("Location: /attapp/dashboard/dashboard.php");
+        header("Location: /dashboard.php");
         exit();
     } else {
         $error = "Invalid username or password";

@@ -1,12 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['faculty'])) {
-    header("Location: /attapp/login/index.php");
+    header("Location: /login.php");
     exit();
 }
 
-$path = isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] !== '' ? $_SERVER['DOCUMENT_ROOT'] : dirname(__DIR__, 1);
-require_once $path . "/attapp/database/database.php";
+require_once __DIR__ . "/database.php";
 
 $current_page = basename($_SERVER['PHP_SELF']);
 $faculty_user  = $_SESSION['faculty'];
@@ -50,7 +49,7 @@ function icon($name) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AttApp — Student Attendance Management</title>
-<link rel="stylesheet" href="/attapp/dashboard/style.css">
+<link rel="stylesheet" href="/style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body id="body-root">
@@ -68,28 +67,28 @@ function icon($name) {
 
   <div class="sidebar-section-label">Main Menu</div>
   <nav class="sidebar-nav">
-    <a href="/attapp/dashboard/dashboard.php" class="nav-item <?= activeNav('dashboard.php', $current_page) ?>">
+    <a href="/dashboard.php" class="nav-item <?= activeNav('dashboard.php', $current_page) ?>">
       <span class="nav-icon"><?= icon('grid') ?></span> Dashboard
     </a>
-    <a href="/attapp/dashboard/take_attendance.php" class="nav-item <?= activeNav('take_attendance.php', $current_page) ?>">
+    <a href="/take_attendance.php" class="nav-item <?= activeNav('take_attendance.php', $current_page) ?>">
       <span class="nav-icon"><?= icon('clipboard') ?></span> Attendance
     </a>
-    <a href="/attapp/dashboard/manage_students.php" class="nav-item <?= activeNav('manage_students.php', $current_page) ?>">
+    <a href="/manage_students.php" class="nav-item <?= activeNav('manage_students.php', $current_page) ?>">
       <span class="nav-icon"><?= icon('users') ?></span> Students
     </a>
-    <a href="/attapp/dashboard/view_attendance.php" class="nav-item <?= activeNav('view_attendance.php', $current_page) ?>">
+    <a href="/view_attendance.php" class="nav-item <?= activeNav('view_attendance.php', $current_page) ?>">
       <span class="nav-icon"><?= icon('bar-chart') ?></span> Reports
     </a>
   </nav>
 
   <div class="sidebar-section-label">System</div>
   <nav class="sidebar-nav">
-    <a href="/attapp/dashboard/notifications_page.php" class="nav-item <?= activeNav('notifications_page.php', $current_page) ?>" id="sidebar-notif-btn">
+    <a href="/notifications_page.php" class="nav-item <?= activeNav('notifications_page.php', $current_page) ?>" id="sidebar-notif-btn">
       <span class="nav-icon"><?= icon('bell') ?></span>
       <span>Notifications</span>
       <span class="nav-badge" id="sidebar-notif-badge" style="display:none">0</span>
     </a>
-    <a href="/attapp/dashboard/settings.php" class="nav-item <?= activeNav('settings.php', $current_page) ?>">
+    <a href="/settings.php" class="nav-item <?= activeNav('settings.php', $current_page) ?>">
       <span class="nav-icon"><?= icon('settings') ?></span> Settings
     </a>
   </nav>
@@ -102,7 +101,7 @@ function icon($name) {
         <div class="user-role-sm">Faculty Member</div>
       </div>
     </div>
-    <a href="/attapp/logout.php" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;color:#94A3B8;font-size:.8rem;font-weight:600;margin-top:4px;transition:all .15s ease;" onmouseover="this.style.background='rgba(220,38,38,.1)';this.style.color='#FCA5A5'" onmouseout="this.style.background='';this.style.color='#94A3B8'">
+    <a href="/logout.php" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;color:#94A3B8;font-size:.8rem;font-weight:600;margin-top:4px;transition:all .15s ease;" onmouseover="this.style.background='rgba(220,38,38,.1)';this.style.color='#FCA5A5'" onmouseout="this.style.background='';this.style.color='#94A3B8'">
       <span style="width:14px;height:14px;display:inline-flex"><?= icon('log-out') ?></span> Sign Out
     </a>
   </div>
