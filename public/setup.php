@@ -30,7 +30,7 @@ function insertData($conn, $sql, $tableName)
 }
 
 // ===========================================================
-// 1️⃣ CREATE TABLES
+// -----------CREATE TABLES-----------
 // ===========================================================
 
 createTable($conn, "
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS notifications (
 )", "notifications");
 
 // ===========================================================
-// 2️ INSERT DEFAULT DATA
+//  INSERT DEFAULT DATA
 // ===========================================================
 
 insertData($conn, "

@@ -14,7 +14,7 @@
   if (localStorage.getItem('theme') !== 'light') {
     document.body.classList.add('dark-mode');
     document.getElementById('theme-icon').innerHTML = `<?= icon('sun') ?>`;
-    localStorage.setItem('theme', 'dark'); // Set it so it's consistent
+    localStorage.setItem('theme', 'dark'); 
   }
 })();
 
