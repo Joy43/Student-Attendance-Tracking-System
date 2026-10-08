@@ -1,5 +1,6 @@
 services:
   web:
+    build: .
     image: attapp-web:latest
     container_name: attapp_web
     ports:
